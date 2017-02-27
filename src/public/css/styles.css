@@ -1,0 +1,93 @@
+html,body{
+    height: 100%;
+}
+
+body {
+    padding-top: 50px;
+}
+
+my-app{
+    height: 100%;
+    display: block;
+}
+ng-component{
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+input[type="color"]{
+    line-height: 20px;
+    height:38px;
+}
+
+
+
+
+/*reset preview*/
+.action-activity-component .preview-content.login-success p{
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+@media screen and (max-width: 1200px) {
+    .firefox .config-preview .card-block{
+        height: 825px;
+        overflow: hidden;
+    }
+}
+@media screen and (max-width: 1100px) {
+    .firefox .config-preview .card-block{
+        height: 735px;
+        overflow: hidden;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .firefox .config-preview .card-block{
+        height: 645px;
+        overflow: hidden;
+    }
+}
+@media screen and (max-width: 900px) {
+    .firefox .config-preview .card-block{
+        height: 555px;
+        overflow: hidden;
+    }
+}
+
+
+
+
+/*==================================*/
+.app-main .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 44px;
+    left: 0;
+    z-index: 1000;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    border-right: 1px solid #eee;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.app-main main{
+    padding-bottom: 70px;
+}
+
+

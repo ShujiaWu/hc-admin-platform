@@ -1,0 +1,11 @@
+<div class="category-header">
+    类别
+    <span class="float-right">
+        <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+    </span>
+</div>
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item" *ngFor="let item of categories">
+        <a class="nav-link" [routerLink]="item" routerLinkActive="active">{{item}}</a>
+    </li>
+</ul>

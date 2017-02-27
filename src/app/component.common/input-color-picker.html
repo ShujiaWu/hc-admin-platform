@@ -1,0 +1,17 @@
+<div class="form-group"
+     [ngClass]="{'has-success': (colorValue.dirty ||colorValue.touched) && !colorValue.errors,'has-danger': (colorValue.dirty ||colorValue.touched) && colorValue.errors}">
+    <div class="row">
+        <label class="col-form-label col-sm-12">{{label}}：</label>
+        <div class="input-group col-sm-12">
+            <input type="color" class="form-control"
+                   [ngModel]="color" name="colorValue0" (ngModelChange)="selectChange($event)">
+            <input type="text" class="form-control" required pattern="^#[0-9a-fA-F]{6}$" maxlength="7"
+                   [ngClass]="{'form-control-success': (colorValue.dirty ||colorValue.touched) && !colorValue.errors,'form-control-danger':(colorValue.dirty ||colorValue.touched) && colorValue.errors}"
+                   [ngModel]="color" name="colorValue1" #colorValue="ngModel" (ngModelChange)="selectChange($event)">
+
+        </div>
+    </div>
+    <div class="form-control-feedback text-right" [hidden]="!colorValue.errors">
+        <p>请选择颜色</p>
+    </div>
+</div>

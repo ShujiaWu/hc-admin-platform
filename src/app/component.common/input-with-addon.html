@@ -1,0 +1,26 @@
+<div class="form-group has-success"
+     [ngClass]="{'has-success': (hasSwitch && isSelected && (inputValue.dirty || inputValue.touched) && !inputValue.errors) || (!hasSwitch && (inputValue.dirty || inputValue.touched) && !inputValue.errors),
+                 'has-danger': (hasSwitch &&isSelected && (inputValue.dirty || inputValue.touched) && inputValue.errors) || (!hasSwitch && (inputValue.dirty || inputValue.touched) && inputValue.errors)}">
+    <div class="row">
+        <label class="col-form-label col-sm-12" *ngIf="label">{{label}}：</label>
+        <div class="input-group col-sm-12">
+            <span class="input-group-addon" *ngIf="hasSwitch">
+                <input type="checkbox" name="inputValue"
+                       [checked]="isSelected"
+                       (change)="selectedChange()">
+            </span>
+            <span class="input-group-addon" *ngIf="lAddon">{{lAddon}}</span>
+            <input type="number" class="form-control" required
+                   placeholder="{{placeholder}}" pattern="{{pattern}}"
+                   [ngClass]="{'form-control-success': (inputValue.dirty ||inputValue.touched) && !inputValue.errors,'form-control-danger':(inputValue.dirty ||inputValue.touched) && inputValue.errors}"
+                   [disabled]="hasSwitch && !isSelected"
+                   [ngModel]="value"
+                   (ngModelChange)="inputValueChange($event)"
+                   name="inputValue" #inputValue="ngModel">
+            <span class="input-group-addon" *ngIf="rAddon">{{rAddon}}</span>
+        </div>
+    </div>
+    <div class="form-control-feedback text-inputValue" [hidden]="!((hasSwitch &&isSelected && (inputValue.dirty || inputValue.touched) && inputValue.errors) || (!hasSwitch && (inputValue.dirty || inputValue.touched) && inputValue.errors))">
+        <p>格式有误</p>
+    </div>
+</div>

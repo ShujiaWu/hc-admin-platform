@@ -1,0 +1,28 @@
+/*
+ * Sidebar
+ */
+
+/*.sidebar {*/
+    /*position: fixed;*/
+    /*top: 51px;*/
+    /*bottom: 44px;*/
+    /*left: 0;*/
+    /*z-index: 1000;*/
+    /*padding: 20px;*/
+    /*overflow-x: hidden;*/
+    /*overflow-y: auto; !* Scrollable contents if viewport is shorter than content. *!*/
+    /*border-right: 1px solid #eee;*/
+    /*padding-left: 0;*/
+    /*padding-right: 0;*/
+/*}*/
+
+/*main{*/
+    /*padding-bottom: 70px;*/
+/*}*/
+
+/*.config .explain{*/
+    /*margin-top:10px;*/
+/*}*/
+/*.config .config-form{*/
+    /*margin-top: 10px;*/
+/*}*/

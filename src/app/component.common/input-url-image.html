@@ -1,0 +1,17 @@
+<div class="form-group"
+     [ngClass]="{'has-success': (urlValue.dirty ||urlValue.touched) && !urlValue.errors,'has-danger': (urlValue.dirty ||urlValue.touched) && urlValue.errors}">
+    <div class="row">
+        <label class="col-form-label col-sm-12">{{label}}：</label>
+        <div class="input-group col-sm-12">
+            <span class="input-group-addon">https:</span>
+            <input type="text" class="form-control" required
+                   placeholder="图片URL地址" pattern="^(//).*(png|jp(e)?g)$"
+                   [ngClass]="{'form-control-success': (urlValue.dirty ||urlValue.touched) && !urlValue.errors,'form-control-danger':(urlValue.dirty ||urlValue.touched) && urlValue.errors}"
+                   [ngModel]="url"
+                   (ngModelChange)="url=$event;inputChange()" name="urlValue" #urlValue="ngModel">
+        </div>
+    </div>
+    <div class="form-control-feedback text-right" [hidden]="!urlValue.errors">
+        <p>请核对图片的地址</p>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"></li>
+        <li class="breadcrumb-item">
+            <a [routerLink]="['../']">{{category}}</a>
+        </li>
+        <li class="breadcrumb-item active">
+            {{article}}
+        </li>
+    </ol>
+    <div [innerHtml]="content | safeHtml"></div>
+</div>

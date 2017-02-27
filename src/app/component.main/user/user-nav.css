@@ -1,0 +1,16 @@
+
+.user-component > .nav {
+    margin-bottom: 20px;
+}
+
+.user-component > .nav-item {
+    width: 100%;
+}
+
+.user-component > .nav-item + .nav-item {
+    margin-left: 0;
+}
+
+.user-component > .nav-link {
+    border-radius: 0;
+}

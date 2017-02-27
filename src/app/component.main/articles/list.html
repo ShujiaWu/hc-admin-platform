@@ -1,0 +1,39 @@
+<div class="article-list">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"></li>
+        <li class="breadcrumb-item active">
+            <a>{{category}}</a>
+        </li>
+    </ol>
+    <div>
+        <button class="btn btn-sm btn-primary" (click)="getArticleList()">刷新</button>
+        <button class="btn btn-sm btn-primary">上传</button>
+    </div>
+    <table class="table table-hover margin-t-10" *ngIf="fileList?.length">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>名称</th>
+                <th class="text-center">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of fileList;let i = index">
+                <th scope="row">{{i + 1}}</th>
+                <td  [routerLink]="item">{{item}}</td>
+                <td>
+                    <div class="text-center">
+                        <button class="btn btn-sm btn-primary">删除</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="card margin-t-10" *ngIf="!fileList?.length">
+        <div class="card-block">
+            <div *ngIf="result">当前分类没有文件!</div>
+            <div class="text-danger" *ngIf="!result">{{errorMessage}}!</div>
+        </div>
+    </div>
+</div>

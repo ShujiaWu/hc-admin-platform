@@ -1,0 +1,365 @@
+<div class="user-activity-config">
+    <div class="card explain">
+        <div class="card-block">
+            <div>配置说明：推荐有礼分享配置,该功能用于生成用户分享出去的B页面的布局及样式。</div>
+            <div>配置注意事项：</div>
+            <div>
+                <ul>
+                    <li>类型：700</li>
+                    <li>微信分享配置位置：微信分享配置表</li>
+                    <li>其他配置：无</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <form class="config-form col-md-6" #configForm="ngForm">
+            <div class="card">
+                <div class="card-header">
+                    页面主体配置：
+                </div>
+                <div class="card-block">
+                    <!--顶部图片-->
+                    <input-url-image [label]="'顶部图片'" [(url)]="pageConfig.mainImage"></input-url-image>
+                    <!--主体颜色-->
+                    <input-color-picker [label]="'主题背景颜色'" [(color)]="pageConfig.mainBgColor"></input-color-picker>
+                    <!--主按钮背景颜色-->
+                    <input-color-picker [label]="'主题按钮背景颜色'" [(color)]="pageConfig.mainBtnStyle.background"></input-color-picker>
+                    <!--主按钮文字颜色-->
+                    <input-color-picker [label]="'主题按钮文字颜色'" [(color)]="pageConfig.mainBtnStyle.color"></input-color-picker>
+                    <!--链接颜色-->
+                    <input-color-picker [label]="'主题链接颜色'" [(color)]="pageConfig.loginSuccess.bgColor"></input-color-picker>
+                    <!--按钮文字-->
+                    <input-normal [label]="'按钮文字'" [placeholder]="'按钮文字，以逗号隔开'" [type]="'text'"
+                                  [(value)]="pageConfig.buttons"
+                                  [pattern]="'^((\\w|[\\u4e00-\\u9fa5])+(,)?)+$'"
+                                  [required]="false"></input-normal>
+                    <!--选择火柴的原因-->
+                    <input-url-image [label]="'选择火柴的原因'" [(url)]="pageConfig.reason"></input-url-image>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">用户信息配置</div>
+                <div class="card-block">
+                    <!--上-->
+                    <input-with-addon [hasSwitch]="true" [lAddon]="'上'" [rAddon]="'px'" [placeholder]="'位置'"
+                                      [pattern]="'(-)?\\d+'"
+                                      [(value)]="pageConfig.userNamePosStyle.top.value"
+                                      [(isSelected)]="pageConfig.userNamePosStyle.top.isSelected"></input-with-addon>
+                    <!--右-->
+                    <input-with-addon [hasSwitch]="true" [lAddon]="'右'" [rAddon]="'px'" [placeholder]="'位置'"
+                                      [pattern]="'(-)?\\d+'"
+                                      [(value)]="pageConfig.userNamePosStyle.right.value"
+                                      [(isSelected)]="pageConfig.userNamePosStyle.right.isSelected"></input-with-addon>
+                    <!--下-->
+                    <input-with-addon [hasSwitch]="true" [lAddon]="'下'" [rAddon]="'px'" [placeholder]="'位置'"
+                                      [pattern]="'(-)?\\d+'"
+                                      [(value)]="pageConfig.userNamePosStyle.bottom.value"
+                                      [(isSelected)]="pageConfig.userNamePosStyle.bottom.isSelected"></input-with-addon>
+                    <!--左-->
+                    <input-with-addon [hasSwitch]="true" [lAddon]="'左'" [rAddon]="'px'" [placeholder]="'位置'"
+                                      [pattern]="'(-)?\\d+'"
+                                      [(value)]="pageConfig.userNamePosStyle.left.value"
+                                      [(isSelected)]="pageConfig.userNamePosStyle.left.isSelected"></input-with-addon>
+                    <!--宽-->
+                    <input-with-addon [hasSwitch]="true" [lAddon]="'宽'" [rAddon]="'px'" [placeholder]="'大小'"
+                                      [pattern]="'(-)?\\d+'"
+                                      [(value)]="pageConfig.userNamePosStyle.width.value"
+                                      [(isSelected)]="pageConfig.userNamePosStyle.width.isSelected"></input-with-addon>
+                    <!--高-->
+                    <input-with-addon [hasSwitch]="true" [lAddon]="'高'" [rAddon]="'px'" [placeholder]="'大小'"
+                                      [pattern]="'(-)?\\d+'"
+                                      [(value)]="pageConfig.userNamePosStyle.height.value"
+                                      [(isSelected)]="pageConfig.userNamePosStyle.height.isSelected"></input-with-addon>
+                    <!--文字大小-->
+                    <input-with-addon [hasSwitch]="true" [lAddon]="'文字大小'" [rAddon]="'px'" [placeholder]="'大小'"
+                                      [pattern]="'(-)?\\d+'"
+                                      [(value)]="pageConfig.userNamePosStyle.fontSize.value"
+                                      [(isSelected)]="pageConfig.userNamePosStyle.fontSize.isSelected"></input-with-addon>
+                    <!--文字行高-->
+                    <input-with-addon [hasSwitch]="true" [lAddon]="'文字行高'" [rAddon]="'px'" [placeholder]="'大小'"
+                                      [pattern]="'(-)?\\d+'"
+                                      [(value)]="pageConfig.userNamePosStyle.lineHeight.value"
+                                      [(isSelected)]="pageConfig.userNamePosStyle.lineHeight.isSelected"></input-with-addon>
+                    <!--文字颜色-->
+                    <input-color-picker [label]="'文字颜色'" [(color)]="pageConfig.userNamePosStyle.color"></input-color-picker>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    登录成功配置
+                </div>
+                <div class="card-block">
+                    <!--登录成功类型-->
+                    <div class="form-group">
+                        <fieldset class="row">
+                            <label class="col-form-label col-sm-12">登录成功后操作：</label>
+                            <div class="input-group col-sm-12">
+                                <div class="col-6">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="loginSuccessType" value="0" [(ngModel)]="pageConfig.loginSuccess.type">
+                                        成功后跳转
+                                    </label>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="loginSuccessType" value="1" [(ngModel)]="pageConfig.loginSuccess.type">
+                                        成功后弹窗
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div *ngIf="pageConfig.loginSuccess.type == '1'">
+                        <!--登录成功-背景颜色-->
+                        <input-color-picker [label]="'登录成功-背景颜色：'" [(color)]="pageConfig.loginSuccess.bgColor"></input-color-picker>
+                        <!--登录成功-内容显示-->
+                        <div class="form-group"
+                             [ngClass]="{'has-success': (loginSuccessContent.dirty ||loginSuccessContent.touched) && !loginSuccessContent.errors,'has-danger': (loginSuccessContent.dirty ||loginSuccessContent.touched) && loginSuccessContent.errors}">
+                            <div class="row">
+                                <label class="col-form-label col-sm-12">登录成功-内容显示：</label>
+                                <div class="input-group col-sm-12">
+                        <textarea class="form-control form-control-success" required
+                                  [ngClass]="{'form-control-success': (loginSuccessContent.dirty ||loginSuccessContent.touched) && !loginSuccessContent.errors,'form-control-danger':(loginSuccessContent.dirty ||loginSuccessContent.touched) && loginSuccessContent.errors}"
+                                  [(ngModel)]="pageConfig.loginSuccess.content" name="loginSuccessContent" #loginSuccessContent="ngModel"></textarea>
+
+                                </div>
+                            </div>
+                            <div class="form-control-feedback text-right" [hidden]="!loginSuccessContent.errors">
+                                <p>请填写弹窗内容</p>
+                            </div>
+                        </div>
+                        <!--登录成功-第一个按钮背景颜色-->
+                        <input-color-picker [label]="'登录成功-第一个按钮背景颜色'" [(color)]="pageConfig.loginSuccess.btnStyle1.background"></input-color-picker>
+                        <!--登录成功-第一个按钮文字颜色-->
+                        <input-color-picker [label]="'登录成功-第一个按钮文字颜色'" [(color)]="pageConfig.loginSuccess.btnStyle1.color"></input-color-picker>
+                        <!--登录成功-第二个按钮背景颜色-->
+                        <input-color-picker [label]="'登录成功-第二个按钮背景颜色'" [(color)]="pageConfig.loginSuccess.btnStyle2.background"></input-color-picker>
+                        <!--登录成功-第二个按钮文字颜色-->
+                        <input-color-picker [label]="'登录成功-第一个按钮文字颜色'" [(color)]="pageConfig.loginSuccess.btnStyle2.color"></input-color-picker>
+                    </div>
+                    <div *ngIf="pageConfig.loginSuccess.type == '0'">
+                        <!--登录成功-跳转类型-->
+                        <div class="form-group">
+                            <fieldset class="row">
+                                <label class="col-form-label col-sm-12">登录成功-跳转类型：</label>
+                                <div class="input-group col-sm-12">
+                                    <div class="col-6">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="loginSuccessTargetType" value="0" [(ngModel)]="pageConfig.loginSuccess.target.type">
+                                            Url跳转
+                                        </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="loginSuccessTargetType" value="1" [(ngModel)]="pageConfig.loginSuccess.target.type">
+                                            路由跳转
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <!--登录成功-跳转地址/路由-->
+                        <input-normal [label]="'登录成功-跳转地址/路由'" [placeholder]="'跳转地址/路由'" [type]="'text'"
+                                      [(value)]="pageConfig.loginSuccess.target.url"
+                                      [required]="false"></input-normal>
+                        <!--登录成功-跳转参数-->
+                        <input-normal [label]="'登录成功-跳转参数'" [placeholder]="'跳转参数'" [type]="'text'"
+                                      [(value)]="pageConfig.loginSuccess.target.params"
+                                      [required]="false"></input-normal>
+                        <!--登录成功-跳转是否可以回退-->
+                        <div class="form-group">
+                            <fieldset class="row">
+                                <label class="col-form-label col-sm-12">登录成功-跳转是否可以回退：</label>
+                                <div class="input-group col-sm-12">
+                                    <div class="col-6">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="loginSuccessTargetReplace" value="0" [(ngModel)]="pageConfig.loginSuccess.target.replace">
+                                            有回退历史
+                                        </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="loginSuccessTargetReplace" value="1" [(ngModel)]="pageConfig.loginSuccess.target.replace">
+                                            无回退历史
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    注册成功配置
+                </div>
+                <div class="card-block">
+                    <!--注册成功类型-->
+                    <div class="form-group">
+                        <fieldset class="row">
+                            <label class="col-form-label col-sm-12">注册成功后操作：</label>
+                            <div class="input-group col-sm-12">
+                                <div class="col-6">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="registerSuccessType" value="0" [(ngModel)]="pageConfig.registerSuccess.type">
+                                        成功后跳转
+                                    </label>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="registerSuccessType" value="1" [(ngModel)]="pageConfig.registerSuccess.type">
+                                        成功后弹窗
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div *ngIf="pageConfig.registerSuccess.type == '1'">
+                        <!--注册成功背景颜色-->
+                        <input-color-picker [label]="'登录成功-背景颜色'" [(color)]="pageConfig.registerSuccess.bgColor"></input-color-picker>
+                        <!--注册成功背景图片-->
+                        <input-url-image [label]="'注册成功背景图片'" [(url)]="pageConfig.registerSuccess.bgImage"></input-url-image>
+                    </div>
+                    <!--注册成功-跳转类型-->
+                    <div class="form-group">
+                        <fieldset class="row">
+                            <label class="col-form-label col-sm-12">注册成功后动作（如果是弹窗则是点击后动作）：</label>
+                            <div class="input-group col-sm-12">
+                                <div class="col-6">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="registerSuccessTargetType" value="0" [(ngModel)]="pageConfig.registerSuccess.target.type">
+                                        Url跳转
+                                    </label>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="registerSuccessTargetType" value="1" [(ngModel)]="pageConfig.registerSuccess.target.type">
+                                        路由跳转
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <!--注册成功-跳转地址/路由-->
+                    <input-normal [label]="'注册成功-跳转地址/路由'" [placeholder]="'跳转地址/路由'" [type]="'text'"
+                                  [(value)]="pageConfig.registerSuccess.target.url"
+                                  [required]="false"></input-normal>
+                    <!--注册成功-跳转参数-->
+                    <input-normal [label]="'注册成功-跳转参数'" [placeholder]="'跳转参数'" [type]="'text'"
+                                  [(value)]="pageConfig.registerSuccess.target.params"
+                                  [required]="false"></input-normal>
+                    <!--注册成功-跳转是否可以回退-->
+                    <div class="form-group">
+                        <fieldset class="row">
+                            <label class="col-form-label col-sm-12">注册成功-跳转是否可以回退：</label>
+                            <div class="input-group col-sm-12">
+                                <div class="col-6">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="registerSuccessTargetReplace" value="0" [(ngModel)]="pageConfig.registerSuccess.target.replace">
+                                        有回退历史
+                                    </label>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="registerSuccessTargetReplace" value="1" [(ngModel)]="pageConfig.registerSuccess.target.replace">
+                                        无回退历史
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <div class="col-md-6">
+            <div class="card config-preview">
+                <div class="card-header">
+                    效果预览:
+                    <button class="btn btn-sm btn-primary float-right" type="button" ngxClipboard [cbContent]="getConfig()">复制配置</button>
+                </div>
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link" (click)="previewPos = 0" [class.active]="previewPos == 0">主页面</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" (click)="pageConfig.loginSuccess.type == '1' && (previewPos = 1)" [class.active]="previewPos == 1" [class.disabled]="pageConfig.loginSuccess.type == '0'">登录成功</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" (click)="pageConfig.registerSuccess.type == '1' && (previewPos = 2)" [class.active]="previewPos == 2" [class.disabled]="pageConfig.registerSuccess.type == '0'">注册成功</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-block">
+                    <div class="preview">
+                        <!--主页面-->
+                        <div class="preview-content main" [ngStyle]="{background:pageConfig.mainBgColor}" [hidden]="previewPos != 0">
+                            <div class="header">
+                                <img [src]="pageConfig.mainImage">
+                                <div class="user-name" [ngStyle]="getUserNamePos()">名字</div>
+                            </div>
+                            <div>
+                                <img src="../../../../../public/images/user/action-gift-list.png">
+                                <img src="../../../../../public/images/user/action-input.png">
+                            </div>
+                            <div>
+                                <div class="text-center margin-t-10">
+                                    <div class="main-button" [ngStyle]="{background:pageConfig.mainBtnStyle.background,color:pageConfig.mainBtnStyle.color}">
+                                        领取礼包
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer">
+                                <img [src]="pageConfig.reason">
+                            </div>
+                        </div>
+                        <!--登录成功-->
+                        <div class="preview-content login-success v-align-middle" [hidden]="previewPos != 1">
+                            <div class="dialog v-middle">
+                                <div class="header" [ngStyle]="{background:pageConfig.loginSuccess.bgColor}">
+                                    <img src="../../../../../public/images/user/login-success-bg.png">
+                                    <img src="../../../../../public/images/user/icon-close.png" class="icon-close">
+                                </div>
+                                <div class="body" [innerHtml]="pageConfig.loginSuccess.content | safeHtml"></div>
+                                <div class="footer">
+                                    <div class="btn" [ngStyle]="{background:pageConfig.loginSuccess.btnStyle1.background,color:pageConfig.loginSuccess.btnStyle1.color}">
+                                        我要投资
+                                    </div>
+                                    <div class="btn" [ngStyle]="{background:pageConfig.loginSuccess.btnStyle2.background,color:pageConfig.loginSuccess.btnStyle2.color}">
+                                        我要推荐
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-content register-success" [ngStyle]="{background:pageConfig.registerSuccess.bgColor}" [hidden]="previewPos != 2">
+                            <div>
+                                <img [src]="pageConfig.registerSuccess.bgImage">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    配置文件如下:
+                    <button class="btn btn-sm btn-primary float-right" type="button" ngxClipboard [cbContent]="getConfig()">复制配置</button>
+                </div>
+                <div class="card-block">
+                    <pre>{{getConfig()}}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
