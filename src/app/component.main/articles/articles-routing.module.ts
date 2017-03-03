@@ -1,35 +1,35 @@
 /**
  * Created by Yun on 2017/2/14.
  */
-import {Routes, RouterModule} from "@angular/router";
-import {NgModule} from "@angular/core";
-import {ArticlesComponent} from "./articles";
-import {ListComponent} from "./list";
-import {ContentComponent} from "./content";
+import { Routes, RouterModule } from "@angular/router";
+import { NgModule } from "@angular/core";
+import { ArticlesComponent } from "./articles";
+import { ListComponent } from "./list";
+import { ContentComponent } from "./content";
 
-let routes : Routes = [
+let routes: Routes = [
     {
-        path:'articles',
-        component:ArticlesComponent,
-        children:[
+        path: 'articles',
+        component: ArticlesComponent,
+        children: [
             {
-                path:':category',
-                component:ListComponent
+                path: ':category',
+                component: ListComponent
             },
             {
-                path:':category/:filename',
-                component:ContentComponent
+                path: ':category/:filename',
+                component: ContentComponent
             }
         ]
     }
 ];
 
 @NgModule({
-    imports:[
+    imports: [
         RouterModule.forChild(routes)
     ],
-    exports:[
+    exports: [
         RouterModule
     ]
 })
-export class ArticlesRoutingModule {}
+export class ArticlesRoutingModule { }

@@ -13,6 +13,7 @@ export class InputNormal{
     @Input() value:string;
     @Input() pattern:RegExp;
     @Input() required:boolean;
+    @Input() msgPos:string;
 
     @Output() valueChange = new EventEmitter<string>();
 

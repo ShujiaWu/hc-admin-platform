@@ -26,6 +26,10 @@ module.exports = {
 
     module: {
         loaders: [
+            {
+                test: /pnotify\.js/,
+                loader: 'imports-loader?global=>window,this=>window'
+            },
             // awesome-typescript-loader
             // 一个用于把TypeScript代码转译成ES5的加载器，它会由tsconfig.json文件提供指导
             // angular2-template-loader
@@ -58,7 +62,8 @@ module.exports = {
                 // 那是Angular期望通过元数据的styleUrls属性来指定样式的形式
                 include: helpers.root('src', 'app'),
                 // loader: 'raw-loader',
-                loaders: ['style-loader','css-loader']
+                // loaders: ['to-string-loader','style-loader','css-loader']
+                loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader'] })
             },
             {
                 // 图片加载器，更适合图片，可以将较小的图片转成base64，减少http请求
@@ -117,7 +122,8 @@ module.exports = {
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
-            Tether:'tether'
+            Tether: 'tether',
+            PNotify: 'pnotify'
         }),
         // 复制指定文件
         // new CopyWebpackPlugin([{

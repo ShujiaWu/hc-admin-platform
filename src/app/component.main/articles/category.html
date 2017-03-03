@@ -1,11 +1,61 @@
-<div class="category-header">
-    类别
-    <span class="float-right">
-        <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-    </span>
+<div class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar article-category">
+    <div class="category-header">
+        类别
+        <span class="float-right">
+            <span class="icon icon-add" (click)="mode=0;categoryForm.reset();addCategoryModal.show()"></span>
+        <!--<span class="icon icon-add" (click)="clickTest()"></span>-->
+        </span>
+    </div>
+    <ul class="nav nav-pills flex-column">
+        <li class="nav-item" *ngFor="let item of categories">
+            <a class="nav-link" [routerLink]="item" routerLinkActive="active">
+                <span>{{item}}</span>
+                <span class="float-right glyphicon glyphicon-pencil" (click)="categoryItemModifyClick($event,item);addCategoryModal.show();"></span>
+            </a>
+        </li>
+    </ul>
 </div>
-<ul class="nav nav-pills flex-column">
-    <li class="nav-item" *ngFor="let item of categories">
-        <a class="nav-link" [routerLink]="item" routerLinkActive="active">{{item}}</a>
-    </li>
-</ul>
+
+<div bsModal #addCategoryModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left" [ngSwitch]="mode">
+                    <span *ngSwitchCase="0">添加分类</span>
+                    <span *ngSwitchCase="1">修改分类</span>
+                </h4>
+                <button type="button" class="close pull-right" (click)="addCategoryModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #categoryForm="ngForm">
+                    <div class="form-group has-success" [ngClass]="{'has-success': (categoryNameInput.dirty || categoryNameInput.touched) && !categoryNameInput.errors,
+                                     'has-danger': (categoryNameInput.dirty || categoryNameInput.touched) && categoryNameInput.errors}">
+                        <div class="row">
+                            <label class="col-form-label col-sm-12" [ngSwitch]="mode">
+                                <span *ngSwitchCase="0">新分类名称：</span>
+                                <span *ngSwitchCase="1">分类名称：</span>
+                            </label>
+                            <div class="input-group col-sm-12">
+                                <input type="text" class="form-control" required placeholder="请输入分类名称" [ngClass]="{'form-control-success': (categoryNameInput.dirty ||categoryNameInput.touched) && !categoryNameInput.errors,'form-control-danger':(categoryNameInput.dirty ||categoryNameInput.touched) && categoryNameInput.errors}"
+                                    [(ngModel)]="newCategoryName" name="categoryNameInput" #categoryNameInput="ngModel">
+                            </div>
+                        </div>
+                        <div class="form-control-feedback text-right" [hidden]="!((categoryNameInput.dirty || categoryNameInput.touched) && categoryNameInput.errors)">
+                            <p>请输入合法的分类名称</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="addCategoryModal.hide()">关 闭</button>
+                <button type="button" class="btn btn-warning" (click)="addCategoryModal.hide();deleteCategory()" *ngIf="mode == 1">删 除</button>
+                <button type="button" class="btn btn-primary" (click)="addCategoryModal.hide();addNewCategory()" [disabled]="!categoryForm.form.valid"
+                    *ngIf="mode == 0">添 加</button>
+                <button type="button" class="btn btn-primary" (click)="addCategoryModal.hide();modifyCategory()" [disabled]="!(categoryForm.form.dirty && categoryForm.form.valid)"
+                    *ngIf="mode == 1">修 改</button>
+            </div>
+        </div>
+    </div>
+</div>

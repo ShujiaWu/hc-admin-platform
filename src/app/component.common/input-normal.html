@@ -13,7 +13,7 @@
                    name="inputValue" #inputValue="ngModel">
         </div>
     </div>
-    <div class="form-control-feedback text-inputValue" [hidden]="!((inputValue.dirty || inputValue.touched) && inputValue.errors)">
+    <div class="form-control-feedback text-inputValue text-{{msgPos}}" [hidden]="!((inputValue.dirty || inputValue.touched) && inputValue.errors)">
         <p>格式有误</p>
     </div>
 </div>

@@ -1,0 +1,21 @@
+.article-list-file-upload-list{
+    border:1px solid #CCCCCC;
+    height: 250px;
+    padding: 10px;
+}
+.article-list-file-upload-list,
+.article-list-file-upload-list li{
+    list-style: none;
+}
+
+.article-list-file-upload-list li{
+    border-bottom: 1px solid #EEEEEE;
+    padding-bottom: 10px;
+    position: relative;
+}
+.article-list-file-upload-list-item-operation{
+    position: absolute;
+    top:0;
+    right: 0;
+    background: #FFFFFF;
+}

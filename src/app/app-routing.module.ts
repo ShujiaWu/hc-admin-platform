@@ -2,10 +2,15 @@
  * 路由模块
  * Created by Yun on 2017/2/13.
  */
-import {Routes, RouterModule} from "@angular/router";
-import {NgModule} from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { NgModule } from "@angular/core";
 
-let routes: Routes = [];
+let routes: Routes = [
+    {
+        path: '**',
+        redirectTo: '/user'
+    }
+];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

@@ -6,8 +6,8 @@
         </li>
     </ol>
     <div>
-        <button class="btn btn-sm btn-primary" (click)="getArticleList()">刷新</button>
-        <button class="btn btn-sm btn-primary">上传</button>
+        <button class="btn btn-sm btn-primary" (click)="getArticleList(true)">刷新</button>
+        <button class="btn btn-sm btn-primary" (click)="fileUploadModal.show()">上传</button>
     </div>
     <table class="table table-hover margin-t-10" *ngIf="fileList?.length">
         <thead>
@@ -23,7 +23,7 @@
                 <td  [routerLink]="item">{{item}}</td>
                 <td>
                     <div class="text-center">
-                        <button class="btn btn-sm btn-primary">删除</button>
+                        <button class="btn btn-sm btn-danger" (click)="deleteTarget=item;operationComformModal.show()">删除</button>
                     </div>
                 </td>
             </tr>
@@ -34,6 +34,91 @@
         <div class="card-block">
             <div *ngIf="result">当前分类没有文件!</div>
             <div class="text-danger" *ngIf="!result">{{errorMessage}}!</div>
+        </div>
+    </div>
+</div>
+
+
+<div bsModal #fileUploadModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title pull-left">文件上传 ({{category}})</h5>
+                <button type="button" class="close pull-right" (click)="fileUploadModal.hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="clearfix">
+                        <div class="float-left">文件队列长度： {{uploader?.queue?.length}}</div>
+                        <div class="float-right">
+                            <label for="File_Upload"><span class="btn btn-primary btn-sm">点击选择文件</span></label>
+                            <input type="file" id="File_Upload" hidden ng2FileSelect [uploader]="uploader" multiple />
+                        </div>
+                    </div>
+                    <ul class="article-list-file-upload-list">
+                        <li *ngFor="let item of uploader.queue">
+                            <div>
+                                <div>
+                                    <span *ngIf="item.isSuccess" class="text-success"><i class="glyphicon glyphicon-ok"></i></span>
+                                    <span *ngIf="item.isCancel" class="text-warning"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                    <span *ngIf="item.isError" class="text-warning"><i class="glyphicon glyphicon-remove"></i></span>
+                                    {{item?.file?.name}}
+                                </div>
+                                <div class="article-list-file-upload-list-item-operation">
+                                    <button type="button" class="btn btn-success btn-sm"
+                                            (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                        <span class="glyphicon glyphicon-upload"></span> 上传
+                                    </button>
+                                    <button type="button" class="btn btn-warning btn-sm"
+                                            (click)="item.cancel()" [disabled]="!item.isUploading">
+                                        <span class="glyphicon glyphicon-ban-circle"></span> 取消
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm"
+                                            (click)="item.remove()">
+                                        <span class="glyphicon glyphicon-trash"></span> 移除
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm"
+                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                    <span class="glyphicon glyphicon-upload"></span> 全部上传
+                </button>
+                <button type="button" class="btn btn-warning btn-sm"
+                        (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                    <span class="glyphicon glyphicon-ban-circle"></span> 全部取消
+                </button>
+                <button type="button" class="btn btn-danger btn-sm"
+                        (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                    <span class="glyphicon glyphicon-trash"></span> 全部移除
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #operationComformModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title pull-left">文件删除确认</h5>
+                <button type="button" class="close pull-right" (click)="operationComformModal.hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                您当前正在删除 <span class="text-info">{{deleteTarget}}</span> 文件，该删除为 <span class="text-danger">不可逆操作</span>，请确认后删除！
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm" (click)="operationComformModal.hide()">
+                    <span></span> 返回
+                </button>
+                <button type="button" class="btn btn-danger btn-sm" (click)="deleteArticle(deleteTarget);operationComformModal.hide()">
+                    <span class="glyphicon glyphicon-trash"></span> 删除
+                </button>
+            </div>
         </div>
     </div>
 </div>

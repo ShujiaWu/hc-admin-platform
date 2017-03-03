@@ -8,10 +8,6 @@ import {UserRoutingModule} from "./user-routing.module";
 import {AppCommonModule} from "../../app-common.module";
 import {UserComponent} from "./user";
 import {UserNavComponent} from "./user-nav";
-import {InputColorPicker} from "../../component.common/input-color-picker";
-import {InputUrlImage} from "../../component.common/input-url-image";
-import {InputWithAddon} from "../../component.common/input-with-addon";
-import {InputNormal} from "../../component.common/input-normal";
 import {ActionActivityConfigComponent} from "./actions/action-activity-config";
 import {ActivityShareToFriendsConfigComponent} from "./actions/activity-config/share-to-friends";
 import {ActivityActivitiesConfigComponent} from "./actions/activity-config/activities";
@@ -43,12 +39,6 @@ import {TabsModule} from "ng2-bootstrap";
         ActivityProductConfigComponent,
         ActivityDistributionConfigComponent,
         ActivityCooperationConfigComponent,
-
-        //控件
-        InputColorPicker,
-        InputUrlImage,
-        InputWithAddon,
-        InputNormal,
     ],
     providers:[]
 })
